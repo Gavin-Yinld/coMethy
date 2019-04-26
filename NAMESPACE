@@ -1,6 +1,7 @@
 export(co_methylation_step1)
 export(co_methylation_step2)
 export(extract_eigen)
-import(WGCNA)
+importFrom(WGCNA,pickSoftThreshold,blockwiseModules)
+importFrom(grDevices, dev.off, pdf)
 importFrom(graphics, abline, lines, par, text)
 importFrom(utils, tail, write.table)
