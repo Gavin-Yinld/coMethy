@@ -1,10 +1,10 @@
-co_methylation_step2 <- function(kmeans_data,softPower_list,plot=FALSE){
+co_methylation_step2 <- function(data,kmeans_result,softPower_list,plot=FALSE){
   options(stringsAsFactors=F)
   all.data <- NULL
   all.label <- NULL
   for(i in 1:3){
     require(WGCNA)
-    wgcna.data <- t(data[which(km.res$cluster==i),])
+    wgcna.data <- t(data[which(kmeans_result$cluster==i),])
     net = blockwiseModules(wgcna.data, power = softPower_list[i],maxBlockSize = 5000,
                        TOMType = "signed", minModuleSize = 300,
                        reassignThreshold = 0, mergeCutHeight = 0.25,
@@ -22,14 +22,14 @@ co_methylation_step2 <- function(kmeans_data,softPower_list,plot=FALSE){
   all.label <- all.label[-grep("_0",all.label)]
   if(plot==TRUE)
   {
-    label.list <- sord(unique(all.label))
-      pdf("wgcna.cluster.ml.pdf")
-      par(mfrow=c(4,4))
+    label.list <- sort(unique(all.label))
+      pdf("wgcna.module.pdf")
+      par(mfrow=c(3,3))
       for(label in label.list)
       {
         temp.data <- all.data[which(all.label==label),]
         plot(1:ncol(temp.data),seq(0,1,length.out=ncol(temp.data)),type='n',xlab='Samples',
-             ylab='Methylation level',main=paste0("Cluster ",label,',','\t',"n=",nrow(temp.data)),cex.lab=1.2,cex.axis=1.2,cex.main=1.2)
+             ylab='Methylation level',main=paste0("Module ",label,',','\n',"n=",nrow(temp.data)))
         for(j in 1:nrow(temp.data))
         {
           lines(x=1:ncol(temp.data),y=temp.data[j,],col=240,lwd=0.1)
@@ -38,7 +38,7 @@ co_methylation_step2 <- function(kmeans_data,softPower_list,plot=FALSE){
       }
       dev.off()
     }
-  return(list(profile=all.data,modult_id=all.label))
+  return(list(profile=all.data,module_id=all.label))
 }
 ##################################################################################
 
