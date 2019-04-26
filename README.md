@@ -9,7 +9,7 @@ In R console,
 source("http://bioconductor.org/biocLite.R")
 biocLite("WGCNA")
 library("devtools")
-devtools::install_github("Gavin-Yinld/coMethy")
+devtools::install_github("Gavin-Yinld/coMethly")
 ```
 ```R
 library("coMethy")
