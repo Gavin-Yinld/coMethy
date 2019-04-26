@@ -10,11 +10,15 @@ The second step of co-methylation analysis
 The second step of the co-methylation analysis, i.e. co-methylation analysis in each kmeans cluster based on WGCNA package.
 }
 \usage{
-co_methylation_step2(kmeans_data,softPower_list,plot=FALSE)
+co_methylation_step2(data,kmeans_result,softPower_list,plot=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{kmeans_data}{
+\item{data}{
+%%     ~~Describe \code{x} here~~
+methylation profile of pCSM loci in each sample
+}
+  \item{kmeans_result}{
 %%     ~~Describe \code{x} here~~
 a kmeans object including the data and cluster information
 }

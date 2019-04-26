@@ -10,7 +10,7 @@ The first step of co-methylation analysis
 The first step of the co-methylation analysis, including kmeans analysis to group pCSM loci into three clusters, i.e. hypo/mid/hyper-methylation cluster, and, for each kmeans cluster, the network topology analysis function in WGCNA package is called to pick the soft-thresholding power.
 }
 \usage{
-co_methylation_step1(csm_ml_matrix,plot=FALSE)
+co_methylation_step1(csm_ml_matrix)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,10 +18,7 @@ co_methylation_step1(csm_ml_matrix,plot=FALSE)
 %%     ~~Describe \code{x} here~~
 methylation profile of pCSM loci in each sample
 }
-\item{plot}{
-%%     ~~Describe \code{x} here~~
-Logical; determine whether to produce the figure with methylation level of pCSM loci in each kmeans cluster
-}
+
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
