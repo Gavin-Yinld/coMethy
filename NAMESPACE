@@ -1,0 +1,6 @@
+export(co_methylation_step1)
+export(co_methylation_step2)
+export(extract_eigen)
+import(WGCNA)
+importFrom(graphics, abline, lines, par, text)
+importFrom(utils, tail, write.table)

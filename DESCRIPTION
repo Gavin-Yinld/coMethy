@@ -1,0 +1,15 @@
+Package: coMethy
+Type: Package
+Title: Co-methylation analysis to cluster the genomic loci with similar methylation pattern
+Version: 0.1.0
+Author: Liduo Yin, Yanting Luo, Xiguang Xu, Shiyu Wen, Xiaowei Wu, Xuemei Lu* and Hehuang Xie* 
+Maintainer: The package maintainer <yinliduo@big.ac.cn>
+Depends: R (>= 3.3.2)
+Imports: WGCNA
+Description: Co-methylation analysis to cluster the genomic loci with similar methylation pattern
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+NeedsCompilation: no
+Packaged: 2019-04-09 07:34:10 UTC; Yin
