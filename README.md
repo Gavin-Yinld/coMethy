@@ -2,6 +2,21 @@
 
 # coMethly
 Co-methylation analysis to cluster the genomic loci with similar methylation pattern
+# Installation
+csmFinder needs the following tools to be installed and available in the `PATH` environment:
+1.  [R](https://www.r-project.org/)(>=3.4.4)
+2.  [python2](https://www.python.org/downloads/) (>=2.7.10), to process the bismark extractor results
+3.  [bedtools2](https://github.com/arq5x/bedtools2) (>=2.28.0), to merge the overlapped pCSM segments into pCSM loci
+
+In R console,
+```R
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("GenomicRanges","WGCNA"))
+library("devtools")
+devtools::install_github("Gavin-Yinld/coMethy")
+```
+
+
 
 ```R
 library("coMethy")
