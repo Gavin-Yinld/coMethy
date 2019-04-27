@@ -21,6 +21,6 @@ module <- co_methylation_step2(data=meth_data,
                                softPower_list=c(16,20,16),plot=T)
 eigen_loci <- extract_eigen(module$profile,module$module_id,100,plot=T)
 ```
-<div align=center><img width="500" height="520" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/power.pdf"/></div>
+<div align=center><src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/power.png"/></div>
 <div align=center><img width="300" height="320" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/wgcna.cluster.ml.pdf"/></div>
 <div align=center><img width="300" height="320" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/eigen_loci.pdf"/></div>
