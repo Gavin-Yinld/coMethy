@@ -45,7 +45,7 @@ chr4_131771412_131771552    0.10      0.36            0.30
 chr3_135529338_135529388    0.90      0.91            0.92
 
 ```
-First, K-means clustering analysis is called to divide pCSM loci into hypo/mid/hyper methylation groups. In addinion, `pickSoftThreshold` in `WGCNA` package is called to show the topological properties of the network.
+First, K-means clustering analysis is called to divide pCSM loci into hypo/mid/hyper methylation groups. In addinion, `pickSoftThreshold` in `WGCNA` package is called to show the topological properties of the network in each group.
 
 ```R
 kmeans_cluster <- co_methylation_step1(meth_data)
