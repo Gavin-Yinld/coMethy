@@ -3,6 +3,11 @@
 # coMethly
 # Introduction
 coMethy is an R package for grouping the the genomic loci with similar methylation pattern. According to the methylation profiles of genomic loci in target methylomes, co-methylation analysis was performed in combination of k-means clustering and WGCNA analysis. For each co-methylation module, PCA analysis was performed to select a subset of loci as the eigen loci representing methylation trend.
+
+# Current Features
+* Co-methylation analysis to cluster pCSM loci with similar methylation pattern into co-methylated modules
+* PCA analysis to extract eigen-pCSM loci representing methylation trend of ecah co-methylation module
+
 # Installation
 In R console,
 ```R
