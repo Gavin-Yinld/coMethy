@@ -4,10 +4,6 @@
 # Introduction
 coMethy is an R package for grouping the the genomic loci with similar methylation pattern. According to the methylation profiles of genomic loci in target methylomes, co-methylation analysis was performed in combination of k-means clustering and WGCNA analysis. For each co-methylation module, PCA analysis was performed to select a subset of loci as the eigen loci representing methylation trend.
 
-# Current Features
-* Co-methylation analysis to cluster pCSM loci with similar methylation pattern into co-methylated modules
-* PCA analysis to extract eigen-pCSM loci representing methylation trend of ecah co-methylation module
-
 # Installation
 In R console,
 ```R
@@ -19,7 +15,7 @@ devtools::install_github("Gavin-Yinld/coMethy")
 # How to Use
 
 ## Step 1. K-means clustering to divide the genomic with distinct methylation level
-`coMethy` takes the methylation profile of input genomic loci in target methylomes. A numeric matrix is needed as input with each row denotes a genomic loci and each column denotes a sample.
+`coMethy` takes the methylation profile of input genomic loci in target methylomes. A numeric matrix is needed as input with each row denotes a genomic loci ,each column denotes a sample and each value denotes the methylation level.
 ```R
 library("coMethy")
 
@@ -45,7 +41,7 @@ chr4_131771412_131771552    0.10      0.36            0.30
 chr3_135529338_135529388    0.90      0.91            0.92
 
 ```
-First, K-means clustering analysis is called to divide pCSM loci into hypo/mid/hyper methylation groups. In addinion, `pickSoftThreshold` in `WGCNA` package is called to show the topological properties of the network in each group.
+Firstly, K-means clustering analysis is called to divide pCSM loci into hypo/mid/hyper-methylated groups. In addinion, `pickSoftThreshold` in `WGCNA` package is called to show the topological properties of the network in each group.
 
 ```R
 kmeans_cluster <- co_methylation_step1(meth_data)
