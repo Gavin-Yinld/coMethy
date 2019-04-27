@@ -23,4 +23,4 @@ eigen_loci <- extract_eigen(module$profile,module$module_id,100,plot=T)
 ```
 <div align=center><img width="800" height="600" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/power.png"/></div>
 <div align=center><img width="800" height="600" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/wgcna.png"/></div>
-<div align=center><img width="300" height="320" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/eigen_loci.pdf"/></div>
+<div align=center><img width="800" height="600" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/eigen_loci.png"/></div>
