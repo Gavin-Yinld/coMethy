@@ -25,7 +25,7 @@ library("coMethy")
 # get the demo dataset
 file=paste(system.file(package="coMethy"),"extdata/co_methy.test.data.txt",sep='/')
 meth_data <- read.table(file,sep='\t',header=T,row.names=1)
-# a typical input data should like this:
+# a typical input data looks like this:
 head(meth_data)
 ```
 ```R
