@@ -50,14 +50,12 @@ First, K-means clustering analysis is called to divide pCSM loci into hypo/mid/h
 kmeans_cluster <- co_methylation_step1(meth_data)
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/power.png"/></div>
+Step 2. WGCNA analysis to detect the co-methylation module
 ```R
 module <- co_methylation_step2(data=meth_data,
                                kmeans_result=kmeans_cluster,
                                softPower_list=c(16,20,16),plot=T)
-
 ```
-Step 2. WGCNA analysis to detect the co-methylation module
-
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/wgcna.png"/></div>
 Step 3. WGCNA analysis to detect the co-methylation module
 ```R
