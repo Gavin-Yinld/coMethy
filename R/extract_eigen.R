@@ -64,7 +64,8 @@ extract_eigen <- function(methy_data ,all_label , number_of_eig,plot=F )
 	  {
 	    temp.data <- eigen_loci[which(eigen_loci.label==label),]
 	    plot(1:ncol(temp.data),seq(0,1,length.out=ncol(temp.data)),type='n',xlab='Samples',
-	         ylab='Methylation level',main=paste0("Module ",label,',','\n',"n=",nrow(temp.data)))
+	         ylab='Methylation level',main=paste0("Module ",label,',','\n',"n=",nrow(temp.data)),
+	         cex.lab=1.2,cex.axis=1.2)
 	    for(j in 1:nrow(temp.data))
 	    {
 	      lines(x=1:ncol(temp.data),y=temp.data[j,],col='red',lwd=0.1)
