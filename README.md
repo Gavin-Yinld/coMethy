@@ -27,6 +27,21 @@ file=paste(system.file(package="coMethy"),"extdata/co_methy.test.data.txt",sep='
 meth_data <- read.table(file,sep='\t',header=T,row.names=1)
 # a typical input data looks like this:
 head(meth_data)
+                         glia_7wk neu_7wk glia_12mo_F neu_12mo_F exc_neu pv_neu
+chr7_82243987_82244107       0.39    0.77        0.21       0.73    0.81   0.89
+chr2_166158817_166158941     0.64    0.90        0.59       0.92    0.90   0.46
+chr5_30670219_30670424       0.69    0.84        0.64       0.88    0.85   0.22
+chr7_66421727_66421857       0.66    0.76        0.68       0.80    0.74   0.80
+chr4_131771412_131771552     0.47    0.91        0.33       0.93    0.94   0.93
+chr3_135529338_135529388     0.92    1.00        1.00       0.97    0.76   0.73
+                         vip_neu astrocyte oligodendrocyte
+chr7_82243987_82244107      0.65      0.72            0.73
+chr2_166158817_166158941    0.62      0.81            0.59
+chr5_30670219_30670424      0.90      0.93            0.83
+chr7_66421727_66421857      0.84      0.64            0.71
+chr4_131771412_131771552    0.10      0.36            0.30
+chr3_135529338_135529388    0.90      0.91            0.92
+
 ```
 ```R
 kmeans_cluster <- co_methylation_step1(meth_data)
