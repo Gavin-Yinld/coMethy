@@ -1,5 +1,6 @@
 co_methylation_step1 <- function(csm_ml_matrix){
 options(stringsAsFactors=F)
+set.seed(123)
 data <- as.matrix(csm_ml_matrix)
 km.res <- kmeans(data, 3, nstart = 25)
 par(mfrow = c(3,2),mar=c(3,5,2,2));
