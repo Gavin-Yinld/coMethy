@@ -22,8 +22,13 @@ devtools::install_github("Gavin-Yinld/coMethly")
 `csmFinder` takes the methylation profile of input genomic loci in target methylomes. A numeric matrix is needed as input with each row denotes a genomic loci and each column denotes a sample.
 ```R
 library("coMethy")
+# get the demo dataset
 file=paste(system.file(package="coMethy"),"extdata/co_methy.test.data.txt",sep='/')
 meth_data <- read.table(file,sep='\t',header=T,row.names=1)
+# a typical input data should like this:
+head(meth_data)
+```
+```R
 kmeans_cluster <- co_methylation_step1(meth_data)
 module <- co_methylation_step2(data=meth_data,
                                kmeans_result=kmeans_cluster,
