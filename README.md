@@ -16,6 +16,10 @@ biocLite("WGCNA")
 library("devtools")
 devtools::install_github("Gavin-Yinld/coMethly")
 ```
+# How to Use
+
+## Step 1. K-means clustering to divide the genomic with distinct methylation level
+`csmFinder` takes the methylation profile of input genomic loci in target methylomes. A numeric matrix is needed as input with each row denotes a genomic loci and each column denotes a sample.
 ```R
 library("coMethy")
 file=paste(system.file(package="coMethy"),"extdata/co_methy.test.data.txt",sep='/')
