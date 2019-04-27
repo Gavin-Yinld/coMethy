@@ -14,7 +14,7 @@ In R console,
 source("http://bioconductor.org/biocLite.R")
 biocLite("WGCNA")
 library("devtools")
-devtools::install_github("Gavin-Yinld/coMethly")
+devtools::install_github("Gavin-Yinld/coMethy")
 ```
 # How to Use
 
