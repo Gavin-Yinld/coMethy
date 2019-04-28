@@ -49,7 +49,7 @@ kmeans_cluster <- co_methylation_step1(meth_data)
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/power.png"/></div>
 
 ## Step 2. WGCNA analysis to detect the co-methylation module
-
+Network construction was performed using the `blockwiseModules` function in the `WGCNA` package, which allows the network construction for the entire data set. For each of kmeans-group, a pair-wise correlation matrix is computed, and an adjacency matrix is calculated by raising the correlation matrix to a power. The proper power need to be chosen using the scale-free topology criterion in step 1. For example, the power of 16,20,16 are chosen for the networks built from each kmeans-group.
 ```R
 module <- co_methylation_step2(data=meth_data,
                                kmeans_result=kmeans_cluster,
