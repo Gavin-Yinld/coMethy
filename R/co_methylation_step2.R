@@ -6,11 +6,10 @@ co_methylation_step2 <- function(data,kmeans_result,softPower_list,plot=FALSE){
     require(WGCNA)
     wgcna.data <- t(data[which(kmeans_result$cluster==i),])
     net = blockwiseModules(wgcna.data, power = softPower_list[i],maxBlockSize = 5000,
-                       TOMType = "signed", minModuleSize = 300,
+                       minModuleSize = 300,
                        reassignThreshold = 0, mergeCutHeight = 0.25,
                        numericLabels = TRUE, pamRespectsDendro = FALSE,
                        saveTOMs=F,
-                       networkType="signed",
                        verbose = 3)
 	#save.image(file=paste0("kmeans_",i,"WGCNA.Rdata"))
 	wgcna.data <- t(wgcna.data)
