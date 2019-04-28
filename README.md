@@ -58,7 +58,7 @@ module <- co_methylation_step2(data=meth_data,
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/wgcna.png"/></div>
 
 ## Step 3. PCA analysis to extract eigen-loci from each co-methylation module
-
+PCA analysis is adopted to pick a set of pCSM loci with the largest loading in PC1 as eigen-loci for the corresponding module to represent methylation trend.
 ```R
 eigen_loci <- extract_eigen(module$profile,module$module_id,100,plot=T)
 ```
