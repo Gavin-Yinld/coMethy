@@ -6,6 +6,7 @@ km.res <- kmeans(data, 3, nstart = 25)
 par(mfrow = c(3,2),mar=c(3,5,2,2));
 for(i in 1:3)
 {
+  pdf("parameter.pdf")
   require(WGCNA)
 	wgcna.data <- t(data[which(km.res$cluster==i),])
 	powers = c(c(1:10), seq(from = 12, to=30, by=2))
@@ -28,6 +29,7 @@ for(i in 1:3)
      main = paste("Mean connectivity"))
 	text(sft$fitIndices[,1], sft$fitIndices[,5], labels=powers, cex=cex1,col="red")
 	#save(sft,file=paste0("kmeans_",i,"sft.Rdata"))
+ dev.off()
 
 }
 return(km.res)
