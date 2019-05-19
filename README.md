@@ -54,6 +54,8 @@ module <- co_methylation_step2(data=meth_data,
                                kmeans_result=kmeans_cluster,
                                softPower_list=c(16,18,20),plot=T)
 # By setting "plot=T", a file named "wgcna.module.pdf" will be generated to show the methylation level of the loci in each group.
+# Each grey line represents the methylation level of one genomic loci.
+# The red line in each co-methylation module represents the average methylation level of this module.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/wgcna.module.png"/></div>
 
@@ -64,6 +66,7 @@ eigen_loci <- extract_eigen(methy_data=module$profile,
                             all_label=module$module_id,
                             number_of_eig=100,plot=T)
 #By setting "plot=T", a file named "eigen_loci.pdf" will be generated to show the methylation level of the eigen-loci in each group.
+#Red lines in each co-methylation module represent the eigen-loci picked by PCA analysis.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/eigen_loci.png"/></div>
 
