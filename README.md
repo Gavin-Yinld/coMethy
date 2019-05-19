@@ -67,3 +67,11 @@ eigen_loci <- extract_eigen(methy_data=module$profile,
 #By setting "plot=T", a file named "eigen_loci.pdf" will be generated to show the methylation level of the eigen-loci in each group.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/eigen_loci.png"/></div>
+
+## An additional step. NMF analysis to decompose the methylomes based on the methylation profile of eigen-loci
+
+```R
+library(MeDeCom)
+medecom.result<-runMeDeCom(as.matrix(eigen_loci$methy_prof), 2:5, 10^(-5:-1), NINIT=10, NFOLDS=10, ITERMAX=300, NCORES=9)
+```
+
