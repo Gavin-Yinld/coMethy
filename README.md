@@ -69,9 +69,9 @@ eigen_loci <- extract_eigen(methy_data=module$profile,
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/eigen_loci.png"/></div>
 
 ## An additional step. NMF analysis to decompose the methylomes based on the methylation profile of eigen-loci
-
+NMF analysis is imported to explore the composition of the target methylomes, the methylation matrix of eigen-loci in all samples will be decomposed into a product of two matrices: one for the methylation profiles of estimated cell types and the other for the cell-type proportions across all samples.
 ```R
 library(MeDeCom)
-medecom.result<-runMeDeCom(as.matrix(eigen_loci$methy_prof), 2:5, 10^(-5:-1), NINIT=10, NFOLDS=10, ITERMAX=300, NCORES=9)
+medecom.result<-runMeDeCom(as.matrix(eigen_loci$methy_prof), 2:5, 10^(-5:-1), NINIT=10, NFOLDS=10, ITERMAX=300, NCORES=1)
 ```
 
