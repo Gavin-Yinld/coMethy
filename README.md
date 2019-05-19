@@ -44,7 +44,7 @@ Firstly, K-means clustering analysis is adopted to divide pCSM loci into hypo/mi
 ```R
 kmeans_cluster <- co_methylation_step1(meth_data)
 # A file named "parameter.pdf" will be generated to show the topological properties.
-# The two figures in each row represent the topological properties of the network in each k-means group.
+# The two figures in each row represent the topological properties of the network in one k-means group.
 # The X-axis represents the soft-thresholding power.
 # For each kmeans group, a proper soft-thresholding power is need to be choosen, to ensure the scale-free topology property of the network inferred from each k-means group and the connectivity of the genomic loci in the network.
 ```
