@@ -39,21 +39,24 @@ chr7_66421727_66421857      0.84    0.64    0.71
 chr4_131771412_131771552    0.10    0.36    0.30
 chr3_135529338_135529388    0.90    0.91    0.92
 ```
-Firstly, K-means clustering analysis is adopted to divide pCSM loci into hypo/mid/hyper-methylated groups. In addition, the function `pickSoftThreshold` in `WGCNA` package is called to show the topological properties of the network in each group.
+Firstly, K-means clustering analysis is adopted to divide pCSM loci into hypo/mid/hyper-methylated groups. In addition, the function `pickSoftThreshold` in `WGCNA` package is called to show the topological properties of the network inferred from each k-means group.
 
 ```R
 kmeans_cluster <- co_methylation_step1(meth_data)
 # A file named "parameter.pdf" will be generated to show the topological properties.
+# The two figures in each row represent the topological properties of the network in each k-means group.
+# The X-axis represents the soft-thresholding power.
+# For each kmeans group, a proper soft-thresholding power is need to be choosen, to ensure the scale-free topology property of the network inferred from each k-means group and the connectivity of the genomic loci in the network.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/parameter.png"/></div>
 
 ## Step 2. WGCNA analysis to detect co-methylation module
-Network construction is performed by using the `blockwiseModules` function in the `WGCNA` package. For each kmeans-group, a pair-wise correlation matrix is computed, which is converted to an adjacency matrix by raising the correlations to a power. The proper power parameter needs to be chosen by using the scale-free topology criterion in step 1. For example, the power of 16, 18, and 20 are chosen for the networks built for each kmeans-group.
+Network construction is performed by using the `blockwiseModules` function in the `WGCNA` package. For each k-means group, a pair-wise correlation matrix is computed, which is converted to an adjacency matrix by raising the correlations to a power. The proper power parameter needs to be chosen by using the scale-free topology criterion in step 1. For example, the power of 16, 18, and 20 are chosen for the networks built for each kmeans-group.
 ```R
 module <- co_methylation_step2(data=meth_data,
                                kmeans_result=kmeans_cluster,
                                softPower_list=c(16,18,20),plot=T)
-# By setting "plot=T", a file named "wgcna.module.pdf" will be generated to show the methylation level of the loci in each group.
+# By setting "plot=T", a file named "wgcna.module.pdf" will be generated to show the methylation level of the loci in each co-methylation module.
 # Each grey line represents the methylation level of one genomic loci.
 # The red line in each co-methylation module represents the average methylation level of this module.
 ```
@@ -65,7 +68,7 @@ PCA analysis is performed to pick a set of pCSM loci with the largest loading in
 eigen_loci <- extract_eigen(methy_data=module$profile,
                             all_label=module$module_id,
                             number_of_eig=100,plot=T)
-#By setting "plot=T", a file named "eigen_loci.pdf" will be generated to show the methylation level of the eigen-loci in each group.
+#By setting "plot=T", a file named "eigen_loci.pdf" will be generated to show the methylation level of the eigen-loci in each co-methylation module.
 #Red lines in each co-methylation module represent the eigen-loci picked by PCA analysis.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/eigen_loci.png"/></div>
