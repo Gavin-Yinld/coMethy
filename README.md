@@ -46,7 +46,7 @@ Firstly, K-means clustering analysis is called to divide pCSM loci into hypo/mid
 kmeans_cluster <- co_methylation_step1(meth_data)
 # A file named "parameter.pdf" will be generated to show the the topological properties.
 ```
-<div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/power.png"/></div>
+<div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/parameter.png"/></div>
 
 ## Step 2. WGCNA analysis to detect the co-methylation module
 Network construction was performed using the `blockwiseModules` function in the `WGCNA` package, which allows the network construction for the entire data set. For each of kmeans-group, a pair-wise correlation matrix is computed, and an adjacency matrix is calculated by raising the correlation matrix to a power. The proper power need to be chosen using the scale-free topology criterion in step 1. For example, the power of 16, 18 and 20 are chosen for the networks built from each kmeans-group.
@@ -56,7 +56,7 @@ module <- co_methylation_step2(data=meth_data,
                                softPower_list=c(16,18,20),plot=T)
 # By setting "plot=T", a file named "wgcna.module.pdf" will be generated to show the methylation level of the loci in each group.
 ```
-<div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/wgcna.png"/></div>
+<div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/wgcna.module.png"/></div>
 
 ## Step 3. PCA analysis to extract eigen-loci from each co-methylation module
 PCA analysis is adopted to pick a set of pCSM loci with the largest loading in PC1 as eigen-loci for the corresponding module to represent methylation trend.
@@ -66,7 +66,7 @@ eigen_loci <- extract_eigen(methy_data=module$profile,
                             number_of_eig=100,plot=T)
 #By setting "plot=T", a file named "eigen_loci.pdf" will be generated to show the methylation level of the eigen-loci in each group.
 ```
-<div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/eigen_loci.png"/></div>
+<div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/eigen_loci.png"/></div>
 
 ## An additional step. Non-negative matrix factorization (NMF) analysis to decompose the methylomes based on the methylation profile of eigen-loci
 NMF analysis is used to explore the composition of the target methylomes, the methylation matrix of eigen-loci in all samples will be decomposed into a product of two matrices: one for the methylation profiles of estimated cell types and the other for the cell-type proportions across all samples. MeDeCom package is adopted to perform NMF analysis, the useage of this package can be found in github (https://github.com/lutsik/MeDeCom/blob/master/vignettes/MeDeCom.md).
