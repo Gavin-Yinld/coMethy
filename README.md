@@ -15,7 +15,7 @@ devtools::install_github("Gavin-Yinld/coMethy")
 # How to Use
 
 ## Step 1. K-means clustering to divide the genomic with distinct methylation level
-`coMethy` takes the methylation profile of input genomic loci in target methylomes. A numeric matrix is needed as input with each row denotes a genomic loci ,each column denotes a sample and each value denotes the methylation level.
+`coMethy` takes the methylation profile of input genomic loci in target methylomes. A numeric matrix is needed as input with each row denotes a genomic loci, each column denotes a sample and each value denotes the methylation level.
 ```R
 library("coMethy")
 
@@ -53,7 +53,7 @@ Network construction was performed using the `blockwiseModules` function in the 
 ```R
 module <- co_methylation_step2(data=meth_data,
                                kmeans_result=kmeans_cluster,
-                               softPower_list=c(16,20,16),plot=T)
+                               softPower_list=c(16,18,20),plot=T)
 # By setting "plot=T", a file named "wgcna.module.pdf" will be generated to show the methylation level of the loci in each group.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/wgcna.png"/></div>
@@ -77,8 +77,8 @@ library(MeDeCom)
 medecom.result<-runMeDeCom(as.matrix(eigen_loci$methy_prof), 2:5, 10^(-5:-1), NINIT=10, NFOLDS=10, ITERMAX=300, NCORES=1)
 
 #The methylation profile of estimated cell types and their proportions across all samples can be achieved:
-profile<-getLMCs(medecom.result, K=5, lambda=0.01)
-proportion<-getProportions(medecom.result, K=5, lambda=0.01)
+profile<-getLMCs(medecom.result, K=10, lambda=0.00001)
+proportion<-getProportions(medecom.result, K=5, lambda=0.00001)
 
 ```
 
