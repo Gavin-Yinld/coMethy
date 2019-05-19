@@ -3,17 +3,16 @@ options(stringsAsFactors=F)
 set.seed(123)
 data <- as.matrix(csm_ml_matrix)
 km.res <- kmeans(data, 3, nstart = 25)
+pdf("parameter.pdf")
 par(mfrow = c(3,2),mar=c(3,5,2,2));
 for(i in 1:3)
 {
-  pdf("parameter.pdf")
   require(WGCNA)
 	wgcna.data <- t(data[which(km.res$cluster==i),])
 	powers = c(c(1:10), seq(from = 12, to=30, by=2))
 	###Call the network topology analysis function
 	sft = pickSoftThreshold(wgcna.data, powerVector = powers, verbose = 5,networkType="signed")
 	####Plot the results:
-
 	cex1 = 0.9;
 	#######Scale-free topology fit index as a function of the soft-thresholding power
 	plot(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
@@ -29,9 +28,10 @@ for(i in 1:3)
      main = paste("Mean connectivity"))
 	text(sft$fitIndices[,1], sft$fitIndices[,5], labels=powers, cex=cex1,col="red")
 	#save(sft,file=paste0("kmeans_",i,"sft.Rdata"))
- dev.off()
+
 
 }
+ dev.off()
 return(km.res)
 }
 	###########################################################################
