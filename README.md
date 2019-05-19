@@ -74,11 +74,11 @@ NMF analysis is used to explore the composition of the target methylomes, the me
 library(MeDeCom)
 
 #MeDeCom requires a lot of computation. The processing of the data matrix can take several minutes.
-medecom.result<-runMeDeCom(as.matrix(eigen_loci$methy_prof), 2:5, 10^(-5:-1), NINIT=10, NFOLDS=10, ITERMAX=300, NCORES=1)
+medecom.result<-runMeDeCom(as.matrix(eigen_loci$methy_prof), 2:5, 10^(-5:-1), NINIT=10, NFOLDS=10, ITERMAX=300, NCORES=9)
 
 #The methylation profile of estimated cell types and their proportions across all samples can be achieved:
 profile<-getLMCs(medecom.result, K=10, lambda=0.00001)
-proportion<-getProportions(medecom.result, K=5, lambda=0.00001)
+proportion<-getProportions(medecom.result, K=10, lambda=0.00001)
 
 ```
 
