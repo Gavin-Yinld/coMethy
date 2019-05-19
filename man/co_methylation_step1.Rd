@@ -49,16 +49,9 @@ A list the following two components:
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
+library("coMethy")
+file=paste(system.file(package="coMethy"),"extdata/co_methy.test.data.txt",sep='/')
+meth_data <- read.table(file,sep='\t',header=T,row.names=1)
+kmeans_cluster <- co_methylation_step1(meth_data)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+
