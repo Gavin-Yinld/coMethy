@@ -44,6 +44,7 @@ Firstly, K-means clustering analysis is called to divide pCSM loci into hypo/mid
 
 ```R
 kmeans_cluster <- co_methylation_step1(meth_data)
+# "parameter.pdf" will be generated to show the the topological properties.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/power.png"/></div>
 
@@ -53,6 +54,7 @@ Network construction was performed using the `blockwiseModules` function in the 
 module <- co_methylation_step2(data=meth_data,
                                kmeans_result=kmeans_cluster,
                                softPower_list=c(16,20,16),plot=T)
+# By setting "plot=T", "wgcna.module.pdf" will be generated to show the methylation level of the loci in each group.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/wgcna.png"/></div>
 
@@ -60,5 +62,6 @@ module <- co_methylation_step2(data=meth_data,
 PCA analysis is adopted to pick a set of pCSM loci with the largest loading in PC1 as eigen-loci for the corresponding module to represent methylation trend.
 ```R
 eigen_loci <- extract_eigen(module$profile,module$module_id,100,plot=T)
+By setting "plot=T", "eigen_loci.pdf" will be generated to show the methylation level of the eigen-loci in each group.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethly/blob/master/figures/eigen_loci.png"/></div>
