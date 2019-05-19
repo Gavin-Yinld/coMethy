@@ -1,4 +1,4 @@
-glia_7wk	neu_7wk	glia_12mo_F	neu_12mo_F	exc_neu	pv_neu	vip_neu	astrocyte	oligodendrocyte
+sample1	sample2	sample3	sample4	sample5	sample6	sample7	sample8	sample9
 chr7_82243987_82244107	0.39	0.77	0.21	0.73	0.81	0.89	0.65	0.72	0.73
 chr2_166158817_166158941	0.64	0.9	0.59	0.92	0.9	0.46	0.62	0.81	0.59
 chr5_30670219_30670424	0.69	0.84	0.64	0.88	0.85	0.22	0.9	0.93	0.83
