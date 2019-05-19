@@ -72,10 +72,13 @@ eigen_loci <- extract_eigen(methy_data=module$profile,
 NMF analysis is used to explore the composition of the target methylomes, the methylation matrix of eigen-loci in all samples will be decomposed into a product of two matrices: one for the methylation profiles of estimated cell types and the other for the cell-type proportions across all samples. MeDecom package is adopted to perform NMF analysis, the useage of this package can be found in github (https://github.com/lutsik/MeDeCom/blob/master/vignettes/MeDeCom.md).
 ```R
 library(MeDeCom)
+
 #MeDeCom requires a lot of computation. The processing of the data matrix can take several minutes.
 medecom.result<-runMeDeCom(as.matrix(eigen_loci$methy_prof), 2:5, 10^(-5:-1), NINIT=10, NFOLDS=10, ITERMAX=300, NCORES=1)
+
 #The methylation profile of estimated cell types and their proportions across all samples can be achieved:
 profile<-getLMCs(medecom.result, K=5, lambda=0.01)
-proportion<-getProportions(medecom.result, K=5, lambda=0.001)
+proportion<-getProportions(medecom.result, K=5, lambda=0.01)
+
 ```
 
