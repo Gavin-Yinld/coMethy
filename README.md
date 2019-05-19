@@ -2,8 +2,7 @@
 
 # coMethy
 # Introduction
-coMethy is an R package for grouping the the genomic loci with similar methylation pattern. According to the methylation profiles of genomic loci in target methylomes, co-methylation analysis was performed in combination of k-means clustering and WGCNA analysis. For each co-methylation module, PCA analysis was performed to select a subset of loci as the eigen loci representing methylation trend.
-
+coMethy is an R package for grouping genomic loci with similar methylation pattern (or called co-methylated loci). According to the methylation profiles of genomic loci in target methylomes, co-methylation analysis was performed in combination with k-means clustering and WGCNA analysis. For each co-methylation module, PCA analysis was performed to select a subset of loci as the eigen loci representing the methylation trend of the module.
 # Installation
 In R console,
 ```R
@@ -14,8 +13,8 @@ devtools::install_github("Gavin-Yinld/coMethy")
 ```
 # How to Use
 
-## Step 1. K-means clustering to divide the genomic with distinct methylation level
-`coMethy` takes the methylation profile of input genomic loci in target methylomes. A numeric matrix is needed as input with each row denotes a genomic loci, each column denotes a sample and each value denotes the methylation level.
+## Step 1. K-means clustering to divide genome with distinct methylation levels
+`coMethy` takes the methylation profile of input genomic loci in target methylomes. A numeric matrix is needed as input with each row denoting a genomic locus, each column denoting a sample, and the corresponding entry containing the methylation level.
 ```R
 library("coMethy")
 
@@ -40,16 +39,16 @@ chr7_66421727_66421857      0.84    0.64    0.71
 chr4_131771412_131771552    0.10    0.36    0.30
 chr3_135529338_135529388    0.90    0.91    0.92
 ```
-Firstly, K-means clustering analysis is called to divide pCSM loci into hypo/mid/hyper-methylated groups. In addinion, `pickSoftThreshold` in `WGCNA` package is called to show the topological properties of the network in each group. 
+Firstly, K-means clustering analysis is adopted to divide pCSM loci into hypo/mid/hyper-methylated groups. In addition, the function `pickSoftThreshold` in `WGCNA` package is called to show the topological properties of the network in each group.
 
 ```R
 kmeans_cluster <- co_methylation_step1(meth_data)
-# A file named "parameter.pdf" will be generated to show the the topological properties.
+# A file named "parameter.pdf" will be generated to show the topological properties.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/parameter.png"/></div>
 
-## Step 2. WGCNA analysis to detect the co-methylation module
-Network construction was performed using the `blockwiseModules` function in the `WGCNA` package, which allows the network construction for the entire data set. For each of kmeans-group, a pair-wise correlation matrix is computed, and an adjacency matrix is calculated by raising the correlation matrix to a power. The proper power need to be chosen using the scale-free topology criterion in step 1. For example, the power of 16, 18 and 20 are chosen for the networks built from each kmeans-group.
+## Step 2. WGCNA analysis to detect co-methylation module
+Network construction is performed by using the `blockwiseModules` function in the `WGCNA` package. For each kmeans-group, a pair-wise correlation matrix is computed, which is converted to an adjacency matrix by raising the correlations to a power. The proper power parameter needs to be chosen by using the scale-free topology criterion in step 1. For example, the power of 16, 18, and 20 are chosen for the networks built for each kmeans-group.
 ```R
 module <- co_methylation_step2(data=meth_data,
                                kmeans_result=kmeans_cluster,
@@ -59,7 +58,7 @@ module <- co_methylation_step2(data=meth_data,
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/wgcna.module.png"/></div>
 
 ## Step 3. PCA analysis to extract eigen-loci from each co-methylation module
-PCA analysis is adopted to pick a set of pCSM loci with the largest loading in PC1 as eigen-loci for the corresponding module to represent methylation trend.
+PCA analysis is performed to pick a set of pCSM loci with the largest loading in PC1 as eigen-loci in each co-methylation module to represent the methylation trend in the module.
 ```R
 eigen_loci <- extract_eigen(methy_data=module$profile,
                             all_label=module$module_id,
@@ -70,17 +69,17 @@ eigen_loci <- extract_eigen(methy_data=module$profile,
 
 coMethy is a major step in our pipeline to perform virtual methylome dissection, and the final step to dissect the methylomes is described below.
 
-## Non-negative matrix factorization (NMF) analysis to decompose the methylomes based on the methylation profile of eigen-loci
-NMF analysis is used to explore the composition of the target methylomes, the methylation matrix of eigen-loci in all samples will be decomposed into a product of two matrices: one for the methylation profiles of estimated cell types and the other for the cell-type proportions across all samples. MeDeCom package is adopted to perform NMF analysis, the useage of this package can be found in github (https://github.com/lutsik/MeDeCom/blob/master/vignettes/MeDeCom.md).
+## Non-negative matrix factorization (NMF) analysis to decompose methylomes based on the methylation profile of eigen-loci
+NMF analysis is used to explore the composition of the target methylomes. The methylation matrix of eigen-loci in all samples will be decomposed into a product of two matrices: one for the methylation profiles of the estimated cell types and the other for the cell-type proportions across all samples. 'MeDeCom' package is adopted to perform the NMF analysis. For details, please check (https://github.com/lutsik/MeDeCom/blob/master/vignettes/MeDeCom.md).
 ```R
 library(MeDeCom)
 
-#MeDeCom requires a lot of computation. The processing of the data matrix can take several minutes.
+#MeDeCom requires intensive computations. The processing of this simple data matrix may take several minutes.
 medecom.result<-runMeDeCom(as.matrix(eigen_loci$methy_prof), 2:5, 10^(-5:-1), NINIT=10, NFOLDS=10, ITERMAX=300, NCORES=9)
 
-#The methylation profile of estimated cell types and their proportions across all samples can be achieved:
-profile<-getLMCs(medecom.result, K=10, lambda=0.00001)
-proportion<-getProportions(medecom.result, K=10, lambda=0.00001)
+#The methylation profile of the estimated cell types and their proportions across all samples can be obtained:
+profile<-getLMCs(medecom.result, K=5, lambda=0.01)
+proportion<-getProportions(medecom.result, K=5, lambda=0.01)
 
 ```
 
