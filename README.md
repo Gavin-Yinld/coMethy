@@ -2,7 +2,7 @@
 
 # coMethy
 # Introduction
-coMethy is an R package for grouping genomic loci with similar methylation pattern (or called co-methylated loci). According to the methylation profiles of genomic loci in target methylomes, co-methylation analysis was performed in combination with k-means clustering and WGCNA analysis. For each co-methylation module, PCA analysis was performed to select a subset of loci as the eigen loci representing the methylation trend of the module.
+coMethy is an R package for grouping genomic loci with similar methylation pattern (or called co-methylated loci). According to the methylation profile of genomic loci in target methylomes, co-methylation analysis was performed in combination with k-means clustering and WGCNA analysis. For each co-methylation module, PCA analysis was performed to select a subset of loci as the eigen loci representing the methylation trend of the module.
 # Installation
 In R console,
 ```R
@@ -46,7 +46,7 @@ kmeans_cluster <- co_methylation_step1(meth_data)
 # A file named "parameter.pdf" will be generated to show the topological properties.
 # The two figures in each row represent the topological properties of the network in one k-means group.
 # The X-axis represents the soft-thresholding power.
-# For each kmeans group, a proper soft-thresholding power is need to be choosen, to ensure the scale-free topology property of the network inferred from each k-means group and the connectivity of the genomic loci in the network.
+# For each k-means group, a proper soft-thresholding power is need to be choosen, to ensure the scale-free topology property of the network inferred from each k-means group and the connectivity of the genomic loci in the network.
 ```
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/parameter.png"/></div>
 
