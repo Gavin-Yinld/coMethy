@@ -75,7 +75,7 @@ eigen_loci <- extract_eigen(methy_data=module$profile,
 
 coMethy is a major step in our pipeline to perform virtual methylome dissection, and the final step to dissect the methylomes is described below.
 
-## Non-negative matrix factorization (NMF) analysis to decompose methylomes based on the methylation profile of eigen-loci
+## Non-negative matrix factorization (NMF) analysis to decompose methylomes based on the methylation profile of eigen-pCSM loci
 NMF analysis is used to explore the composition of the target methylomes. The methylation matrix of eigen-loci in all samples will be decomposed into a product of two matrices: one for the methylation profiles of the estimated cell types and the other for the cell-type proportions across all samples. 'MeDeCom' package is adopted to perform the NMF analysis. For details, please check (https://github.com/lutsik/MeDeCom/blob/master/vignettes/MeDeCom.md).
 ```R
 library(MeDeCom)
