@@ -51,7 +51,7 @@ kmeans_cluster <- co_methylation_step1(meth_data)
 <div align=center><img width="700" height="525" src="https://github.com/Gavin-Yinld/coMethy/blob/master/figures/parameter.png"/></div>
 
 ## Step 2. WGCNA analysis to detect co-methylation module
-Network construction is performed by using the `blockwiseModules` function in the `WGCNA` package. For each k-means group, a pair-wise correlation matrix is computed, which is converted to an adjacency matrix by raising the correlations to a power. The proper power parameter needs to be chosen by using the scale-free topology criterion in step 1. For example, the power of 16, 18, and 20 are chosen for the networks built for each k-means group.
+Network construction is performed by using the `blockwiseModules` function in the `WGCNA` package. For each k-means group, a pair-wise correlation matrix is computed, which is converted to an adjacency matrix by raising the correlations to a power. The proper power parameter needs to be chosen by using the scale-free topology criterion in step 1. For example, the power of 16, 18, and 20 are chosen for the networks built for each k-means group, to balance the scale-free topology property and the connectivity of the genomic loci in the network.
 ```R
 module <- co_methylation_step2(data=meth_data,
                                kmeans_result=kmeans_cluster,
@@ -86,6 +86,9 @@ medecom.result<-runMeDeCom(as.matrix(eigen_loci$methy_prof), 2:5, 10^(-5:-1), NI
 #The methylation profile of the estimated cell types and their proportions across all samples can be obtained:
 profile<-getLMCs(medecom.result, K=5, lambda=0.01)
 proportion<-getProportions(medecom.result, K=5, lambda=0.01)
+
+#The number of cell compositions K could be determined by prior knowledge and regularizer shifts parameter λ could be selected via cross-validation provided in the MeDeCom package. In case that no prior knowledge of cell composition is available for the input methylomes, both k and λ may be selected via cross-validation as suggested in the MeDeCom package.
+plotParameters(medecom.result)
 
 ```
 
